@@ -338,7 +338,7 @@ static CGFloat const kMDCalendarHeaderViewWeekdayBottomMargin  = 5.f;
     _firstDayOfMonth = firstDayOfMonth;
     NSString *monthString = [firstDayOfMonth monthString];
     NSString *yearString = [NSString stringWithFormat:@" %d", (int)[firstDayOfMonth year]];
-    _label.text = _shouldShowYear ? [monthString stringByAppendingString:yearString] : monthString;
+    _label.text = _shouldShowYear ? [[monthString stringByAppendingString:yearString] uppercaseString] : monthString;
 }
 
 - (void)setFont:(UIFont *)font {
@@ -655,7 +655,7 @@ static CGFloat const kMDCalendarViewSectionSpacing = 10.f;
         headerView.weekdayTextColor = _weekdayTextColor;
         
         NSDate *date = [self dateForFirstDayOfSection:indexPath.section];
-        headerView.shouldShowYear = [date year] != [_startDate year];
+        headerView.shouldShowYear = YES;
         headerView.firstDayOfMonth = date;
         
         view = headerView;
