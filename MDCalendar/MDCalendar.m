@@ -394,7 +394,7 @@ static CGFloat const kMDCalendarHeaderViewWeekdayBottomMargin  = 5.f;
 
 @interface MDCalendar () <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) UICollectionViewFlowLayout *layout;
+@property (nonatomic, strong) FloatingCollectionViewFlowLayout *layout;
 
 @property (nonatomic, assign) NSDate *currentDate;
 @end
@@ -412,7 +412,7 @@ static CGFloat const kMDCalendarViewSectionSpacing = 10.f;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+        FloatingCollectionViewFlowLayout *layout = [FloatingCollectionViewFlowLayout new];
         layout.minimumInteritemSpacing  = kMDCalendarViewItemSpacing;
         layout.minimumLineSpacing       = kMDCalendarViewLineSpacing;
         self.layout = layout;
