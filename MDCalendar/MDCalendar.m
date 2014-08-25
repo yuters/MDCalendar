@@ -23,6 +23,7 @@
 //  SOFTWARE.
 
 #import "MDCalendar.h"
+#import "FloatingCollectionViewFlowLayout.h"
 
 @interface MDCalendarViewCell : UICollectionViewCell
 @property (nonatomic, assign) NSDate  *date;
