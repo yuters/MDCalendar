@@ -43,56 +43,30 @@
     return MDCalendarDateFromComponents(components);
 }
 
++ (NSDateFormatter *)dateFormatter {
+    static NSDateFormatter *newDateFormatter;
+    
+    if ( ! newDateFormatter) {
+        newDateFormatter = [[NSDateFormatter alloc] init];
+    }
+    
+    return newDateFormatter;
+}
+
 + (NSArray *)weekdays {
-    return @[@"Sunday",
-             @"Monday",
-             @"Tuesday",
-             @"Wednesday",
-             @"Thursday",
-             @"Friday",
-             @"Saturday"];
+    return [self.dateFormatter weekdaySymbols];
 }
 
 + (NSArray *)weekdayAbbreviations {
-    return @[@"SUN",
-             @"MON",
-             @"TUE",
-             @"WED",
-             @"THU",
-             @"FRI",
-             @"SAT"];
+    return [self.dateFormatter shortStandaloneWeekdaySymbols];
 }
 
 + (NSArray *)monthNames {
-    return @[@"Zero",
-             @"January",
-             @"February",
-             @"March",
-             @"April",
-             @"May",
-             @"June",
-             @"July",
-             @"August",
-             @"September",
-             @"October",
-             @"November",
-             @"December"];
+    return [@[@"Zero"] arrayByAddingObjectsFromArray:[self.dateFormatter monthSymbols]];
 }
 
 + (NSArray *)shortMonthNames {
-    return @[@"Zero",
-             @"Jan",
-             @"Feb",
-             @"Mar",
-             @"Apr",
-             @"May",
-             @"Jun",
-             @"Jul",
-             @"Aug",
-             @"Sep",
-             @"Oct",
-             @"Nov",
-             @"Dec"];
+    return [@[@"Zero"] arrayByAddingObjectsFromArray:[self.dateFormatter shortMonthSymbols]];
 }
 
 - (NSDate *)firstDayOfMonth {
@@ -165,7 +139,7 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     
     NSDateComponents *components = [calendar components:NSCalendarUnitMonth fromDate:self toDate:endDate options:0];
-
+    
     return [components month];
 }
 
@@ -211,7 +185,7 @@
 
 
 #pragma mark - Helpers
-                  
+
 NSDateComponents * MDCalendarDateComponentsFromDate(NSDate *date) {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     return [calendar components:NSYearCalendarUnit|NSCalendarUnitMonth|NSWeekCalendarUnit|NSWeekdayCalendarUnit|NSDayCalendarUnit fromDate:date];
