@@ -657,7 +657,13 @@ static CGFloat const kMDCalendarViewSectionSpacing = 10.f;
         NSDate *date = [self dateForFirstDayOfSection:indexPath.section];
         headerView.shouldShowYear = YES;
         headerView.firstDayOfMonth = date;
-        
+
+        // Header section view shadow
+        headerView.layer.shadowOffset = CGSizeMake(0,1);
+        headerView.layer.shadowRadius = .8;
+        headerView.layer.shadowOpacity = .4;
+        headerView.layer.shadowColor = [UIColor blackColor].CGColor;
+
         view = headerView;
     } else if (kind == UICollectionElementKindSectionFooter) {
         MDCalendarFooterView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:kMDCalendarFooterViewIdentifier forIndexPath:indexPath];
